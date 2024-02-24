@@ -18,13 +18,13 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post('/send-email', (req, res) => {
-  const { name, swimmerName, email, message } = req.body;
+  const { name, email, message } = req.body;
   
   const mailOptions = {
     from: process.env.EMAIL_USERNAME,
     to: process.env.HEAD_COACH_EMAIL, // Replace with the head coach's email
     subject: `New message from ${name}`,
-    text: `Message from ${name} (${email}), for swimmer ${swimmerName}: ${message}`,
+    text: `Message from ${name}, (${email}): ${message}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
